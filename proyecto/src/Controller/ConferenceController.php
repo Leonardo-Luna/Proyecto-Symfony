@@ -13,12 +13,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class ConferenceController extends AbstractController
 {
 
-    #[Route('/', name: 'home')]
-    public function index(ConferenceRepository $conferenceRepository): Response
+    #[Route('/', name: 'homepage')]
+    public function index(): Response
     {
-        return $this->render('conference/index.html.twig', [
-            'conferences' => $conferenceRepository->findAll(),
-        ]);
+        return new Response(<<<EOF
+            <html>
+                <body>
+                    <img src="/images/under-construction.gif"/>
+                </body>
+            </html>
+            EOF
+        );
     }
 
     #[Route('/conference/{id}', name: 'conference')]
