@@ -19,5 +19,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: proyecto
-    volumes:
-    - ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
+    #volumes:
+    #- ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
