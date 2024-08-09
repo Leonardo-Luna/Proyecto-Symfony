@@ -1,0 +1,23 @@
+services:
+
+  app:
+    image: test
+    ports:
+      - 8000:8000
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: proyecto
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./proyecto:/var/www/html
+
+  mysql:
+    image: mysql:9.0.1
+    ports:
+      - 3006:3006
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: proyecto
+    volumes:
+    - ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
