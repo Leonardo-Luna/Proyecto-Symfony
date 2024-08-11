@@ -1,7 +1,7 @@
 services:
 
   app:
-    image: test
+    build: .
     ports:
       - 8000:8000
     environment:
@@ -14,10 +14,8 @@ services:
 
   mysql:
     image: mysql:9.0.1
-    ports:
-      - 3006:3006
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: proyecto
-    #volumes:
-    #- ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
+    volumes:
+    - ./initdb/dumpConDatos.sql:/docker-entrypoint-initdb.d/dumpConDatos.sql

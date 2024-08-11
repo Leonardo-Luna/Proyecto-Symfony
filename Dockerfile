@@ -1,4 +1,4 @@
-FROM webdevops/php-apache-dev:8.3
+FROM drupalci/php-8.1-apache:dev
 
 RUN apt update && apt-get install -y p7zip-full
 
