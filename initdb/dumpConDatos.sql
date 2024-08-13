@@ -41,7 +41,10 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,'Leo','Test','2012-06-18 00:00:00',NULL,1);
+INSERT INTO `comment` VALUES (1,'Leo','La Plata','2023-06-18 00:00:00',NULL,1);
+INSERT INTO `comment` VALUES (2,'Gonza','La Plata','2023-06-18 00:00:00',NULL,1);
+INSERT INTO `comment` VALUES (3,'Eze','La Plata','2023-06-18 00:00:00',NULL,1);
+INSERT INTO `comment` VALUES (4,'Mati','Buenos Aires','2023-04-02 00:00:00',NULL,1);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +70,8 @@ CREATE TABLE `conference` (
 
 LOCK TABLES `conference` WRITE;
 /*!40000 ALTER TABLE `conference` DISABLE KEYS */;
-INSERT INTO `conference` VALUES (1,'Test','2020',1);
+INSERT INTO `conference` VALUES (1,'Buenos Aires','2023',1);
+INSERT INTO `conference` VALUES (2,'La Plata','2023',1);
 /*!40000 ALTER TABLE `conference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,8 +96,34 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20240809175300','2024-08-09 17:53:09',133);
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20240809175300','2024-08-09 17:53:09',133),('DoctrineMigrations\\Version20240812224753','2024-08-12 22:48:06',31);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `sess_id` varbinary(128) NOT NULL,
+  `sess_data` longblob NOT NULL,
+  `sess_lifetime` int unsigned NOT NULL,
+  `sess_time` int unsigned NOT NULL,
+  PRIMARY KEY (`sess_id`),
+  KEY `sess_lifetime_idx` (`sess_lifetime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -105,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-09 20:20:07
+-- Dump completed on 2024-08-12 22:48:58
