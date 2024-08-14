@@ -19,3 +19,4 @@ services:
       MYSQL_DATABASE: proyecto
     volumes:
     - ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
+    - ./initdb/proyectoDumpTest.sql:/docker-entrypoint-initdb.d/proyectoDumpTest.sql

@@ -20,7 +20,7 @@ class SpamChecker
      * 0 = not spam | 1 = maybe spam | 2 = blatant spam 
     **/
 
-    public function getSpamCore(Comment $comment, array $context): int
+    public function getSpamScore(Comment $comment, array $context): int
     {
         $response = $this->client->request('POST', $this->endpoint, [
             'body' => array_merge($context, [

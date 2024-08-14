@@ -9,6 +9,7 @@ use App\Repository\CommentRepository;
 use App\Repository\ConferenceRepository;
 use App\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,8 +60,10 @@ class ConferenceController extends AbstractController
                 'referrer' => $request->headers->get('referrer'),
                 'permalink' => $request->getUri(),
             ];
-            if(2 === $spamChecker->getSpamCore($comment, $context)) {
-                throw new \RuntimeException('Blatant spam. You shall not pass!');
+
+            if($spamChecker->getSpamScore($comment, $context) === 2) {
+                return $this->redirectToRoute('/');
+                #                throw new \RuntimeException('Blatant spam. You shall not pass!');
             }
 
             $this->entityManager->flush();
