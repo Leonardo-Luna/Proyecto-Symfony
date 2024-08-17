@@ -123,7 +123,6 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20240809175300','2024-08-09 17:53:09',133),('DoctrineMigrations\\Version20240812224753','2024-08-12 22:48:06',31),('DoctrineMigrations\\Version20240813203845','2024-08-13 20:38:53',38),('DoctrineMigrations\\Version20240816215608','2024-08-16 21:56:33',46),('DoctrineMigrations\\Version20240816233024','2024-08-16 23:30:51',64);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
