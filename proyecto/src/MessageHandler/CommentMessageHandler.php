@@ -23,7 +23,7 @@ class CommentMessageHandler
                                 private MessageBusInterface $bus,
                                 private WorkflowInterface $commentStateMachine,
                                 private MailerInterface $mailer,
-                                #[Autowire('%admin_email')] private string $adminEmail,
+                                #[Autowire('%admin_email%')] private string $adminEmail,
                                 private ?LoggerInterface $logger = null)
     {
         
