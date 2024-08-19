@@ -29,3 +29,12 @@ services:
   #    MYSQL_DATABASE: proyecto_test
   #  volumes:
   #  - ./initdb/proyectoDumpTest.sql:/docker-entrypoint-initdb.d/proyectoDumpTest.sql
+
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "1025"
+      - "8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1

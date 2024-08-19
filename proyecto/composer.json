@@ -18,12 +18,15 @@
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.4.*",
         "symfony/http-client": "6.4.*",
+        "symfony/mailer": "6.4.*",
         "symfony/mime": "6.4.*",
         "symfony/password-hasher": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/workflow": "6.4.*",
         "symfony/yaml": "6.4.*",
+        "twig/cssinliner-extra": "^3",
         "twig/extra-bundle": "^3.11",
+        "twig/inky-extra": "^3",
         "twig/intl-extra": "^3.11"
     },
     "require-dev": {
@@ -34,7 +37,9 @@
         "symfony/css-selector": "6.4.*",
         "symfony/maker-bundle": "^1.60",
         "symfony/panther": "^2.1",
-        "symfony/phpunit-bridge": "^7.1"
+        "symfony/phpunit-bridge": "^7.1",
+        "symfony/stopwatch": "6.4.*",
+        "symfony/web-profiler-bundle": "6.4.*"
     },
     "config": {
         "allow-plugins": {
