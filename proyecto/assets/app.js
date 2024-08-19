@@ -9,4 +9,5 @@ import 'bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
 
 bsCustomFileInput.init();
+
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
