@@ -12,7 +12,7 @@ use Symfony\Contracts\Cache\CacheInterface;
 #[AsCommand('app:step:info')]
 class StepinfoCommando extends Command
 {
-    public function __construct(private CacheInterface $cache,)
+    public function __construct(private CacheInterface $cache)
     {
         parent::__construct();
     }

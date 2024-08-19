@@ -31,7 +31,6 @@ services:
   #  - ./initdb/proyectoDumpTest.sql:/docker-entrypoint-initdb.d/proyectoDumpTest.sql
 
   mailer:
-    container_name: mailer
     image: axllent/mailpit
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
