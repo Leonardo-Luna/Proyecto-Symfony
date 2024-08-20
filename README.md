@@ -2,7 +2,7 @@ Problemas de los que estoy al tanto:
 
 No pude solucionar:
   - Conexión con Mailpit
-  - No reconoce la ruta "review_comment" (existe y funciona)
+  - Error al publicar un comentario. No reconoce la ruta "review_comment" (existe y funciona)
 
 A revisar:
   - No se puede acceder a la base de datos "proyecto_test"
