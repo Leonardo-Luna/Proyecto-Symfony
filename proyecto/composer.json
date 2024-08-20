@@ -25,6 +25,7 @@
         "symfony/notifier": "6.4.*",
         "symfony/password-hasher": "6.4.*",
         "symfony/runtime": "6.4.*",
+        "symfony/slack-notifier": "6.4.*",
         "symfony/webpack-encore-bundle": "^2.1",
         "symfony/workflow": "6.4.*",
         "symfony/yaml": "6.4.*",

@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Twig\Environment;
 
@@ -41,7 +42,8 @@ class AdminController extends AbstractController
         $this->entityManager->flush();
 
         if($accepted) {
-            $this->bus->dispatch(new CommentMessage($comment->getId()));
+            $reviewUrl = $this->generateUrl('review_comment', ['id' => $comment->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
+            $this->bus->dispatch(new CommentMessage($comment->getId(), $reviewUrl));
         }
 
         return new Response($this->twig->render('admin/review.html.twig', [
@@ -51,7 +53,7 @@ class AdminController extends AbstractController
 
     }
 
-    #[Route('/http-cache/{url<.*>', methods: ['PURGE'])]
+    #[Route('/http-cache/{uri<.*>}', methods: ['PURGE'])]
     public function purgeHttpCache(KernelInterface $kernel, Request $request, string $uri, StoreInterface $store): Response
     {
         if($kernel->getEnvironment() === 'prod') {
