@@ -13,9 +13,13 @@
         </div>
     {% endfor %}
 
-    <h2 class="mb-3">
-        {{ conference }} Conference
-    </h2>
+    <div class="container text-centered">
+        <div class="row">
+            <div class="col">
+                <h3>{{ conference }} Conference</h3>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-12 col-lg-8">
@@ -60,14 +64,15 @@
                 </div>
             {% endif %}
         </div>
-        <div class="col-12 col-lg-4">
-            <div class="bg-light shadow border rounded-3 p-4">
-                <h3 class="font-weight-light">
-                    Add your own feedback
-                </h3>
-
-                {{ form(comment_form) }}
+        {% if is_logged %}
+            <div class="col-12 col-lg-4">
+                <div class="bg-light shadow border rounded-3 p-4">
+                    <h3 class="font-weight-light">
+                        Add your own feedback
+                    </h3>
+                        {{ form(comment_form) }}
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

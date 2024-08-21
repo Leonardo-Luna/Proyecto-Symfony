@@ -62,7 +62,7 @@ class AccountController extends AbstractController
         ]);
     }
 
-    #[Route('/account-comments', name: 'app_my_comments')]
+    #[Route('/account/comments', name: 'app_my_comments')]
     public function showOwnComments(CommentRepository $commentRepository): Response
     {
         $comments = $commentRepository->findBy(['AuthorId' => $this->getUser()->getId()]);
