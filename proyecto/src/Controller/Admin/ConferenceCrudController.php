@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Conference;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -22,9 +23,16 @@ class ConferenceCrudController extends AbstractCrudController
     {
         return $crud
             ->setDefaultSort(['year' => 'DESC'])
+            ->setThousandsSeparator('')
         ;
     }
 
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('year')
+        ;
+    }
 
     public function configureFields(string $pageName): iterable
     {

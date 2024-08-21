@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -28,7 +29,7 @@ class CommentCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Conference Comment')
             ->setEntityLabelInPlural('Conference Comments')
-            ->setSearchFields(['author', 'text', 'email'])
+            ->setSearchFields(['author', 'text'])
             ->setDefaultSort(['createdAt' => 'DESC'])
         ;
     }
@@ -41,8 +42,8 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield AssociationField::new('conference');
+        yield NumberField::new('author_id');
         yield TextField::new('author');
-        yield EmailField::new('email');
         yield TextareaField::new('text')->hideOnIndex();
         yield ImageField::new('photoFilename')
             ->setBasePath('/uploads/photos')

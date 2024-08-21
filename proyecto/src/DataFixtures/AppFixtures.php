@@ -31,10 +31,22 @@ class AppFixtures extends Fixture
         $paris->setInternational(false);
         $manager->persist($paris);
 
+        $user1 = new User();
+        $user1->setRoles(['ROLE_ADMIN']);
+        $user1->setUsername('Leo');
+        $user1->setPassword($this->passwordHasherFactory->getPasswordHasher(User::class)->hash('admin'));
+        $manager->persist($user1);
+
+        $user2 = new User();
+        $user2->setRoles(['ROLE_CONFERENCE_MANAGER']);
+        $user2->setUsername('Gonza');
+        $user2->setPassword($this->passwordHasherFactory->getPasswordHasher(User::class)->hash('manager'));
+        $manager->persist($user2);
+
         $comment1 = new Comment();
         $comment1->setConference($amsterdam);
         $comment1->setAuthor('Leo');
-        $comment1->setEmail('asd@gmail.com');
+        $comment1->setAuthorId(1);
         $comment1->setText('Texto de ejemplo');
         $comment1->setState('published');
         $manager->persist($comment1);
@@ -42,22 +54,10 @@ class AppFixtures extends Fixture
         $comment2 = new Comment();
         $comment2->setConference($amsterdam);
         $comment2->setAuthor('Gonza');
-        $comment2->setEmail('asd2@gmail.com');
+        $comment2->setAuthorId(2);
         $comment2->setText('Texto de ejemplo 2');
         $comment2->setState('published');
         $manager->persist($comment2);
-
-        $admin = new User();
-        $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setUsername('admin');
-        $admin->setPassword($this->passwordHasherFactory->getPasswordHasher(User::class)->hash('admin'));
-        $manager->persist($admin);
-
-        $admin = new User();
-        $admin->setRoles(['ROLE_CONFERENCE_MANAGER']);
-        $admin->setUsername('conferencemanager');
-        $admin->setPassword($this->passwordHasherFactory->getPasswordHasher(User::class)->hash('manager'));
-        $manager->persist($admin);
         
         $manager->flush();
     }

@@ -148,7 +148,7 @@ class Conference
 
     public function computeSlug(SluggerInterface $slugger)
     {
-        if(!$this->slug || '-' === $this->slug) { # Si el slug es null/vacío o es '-'
+        if(!$this->slug || '-' === $this->slug) { # Si el slug no es null/vacío o es '-'
             $this->slug = (string) $slugger->slug((string) $this)->lower(); # Genera un slug
         }
     }

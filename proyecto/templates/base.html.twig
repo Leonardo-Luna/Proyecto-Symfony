@@ -27,14 +27,14 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="header-menu">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item me-3">
-                                <a class="nav-link" href="{{ path('app_account') }}">
-                                    My account
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Account
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_account') }}" >Edit profile</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_my_comments') }}">My comments</a></li>
+                    </ul>
                     </div>
                 </div>
             </nav>
