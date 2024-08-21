@@ -6,7 +6,7 @@
 <div class="row">
         <div class="col">
             {% if comments|length > 0 %}
-                <div class="mb-3">You've posted {{ comments|length }} comments.</div>
+                <h5>You've posted {{ comments|length }} comments.</h5>
                 {% for comment in comments %}
                     <div class="media shadow border rounded-3 p-3 mb-4">
                         <div class="comment-img me-3">

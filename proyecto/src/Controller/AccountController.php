@@ -65,7 +65,7 @@ class AccountController extends AbstractController
     #[Route('/account-comments', name: 'app_my_comments')]
     public function showOwnComments(CommentRepository $commentRepository): Response
     {
-        $comments = $commentRepository->findBy(['id' => $this->getUser()->getId()]);
+        $comments = $commentRepository->findBy(['AuthorId' => $this->getUser()->getId()]);
 
         return $this->render('account/show.html.twig', [
             'user' => $this->getUser(),

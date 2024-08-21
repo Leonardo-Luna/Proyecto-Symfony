@@ -13,13 +13,14 @@
         </div>
     {% endfor %}
 
-    <h2 class="mb-5">
+    <h2 class="mb-3">
         {{ conference }} Conference
     </h2>
 
     <div class="row">
         <div class="col-12 col-lg-8">
             {% if comments|length > 0 %}
+                <h5>There are {{ comments|length }} comments.</h5>
                 {% for comment in comments %}
                     <div class="media shadow border rounded-3 p-3 mb-4">
                         <div class="comment-img me-3">
@@ -47,7 +48,6 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div>There are {{ comments|length }} comments.</div>
                 {% if previous >= 0 %}
                     <a href="{{ path('conference', { slug: conference.slug, offset: previous }) }}">Previous</a>
                 {% endif %}

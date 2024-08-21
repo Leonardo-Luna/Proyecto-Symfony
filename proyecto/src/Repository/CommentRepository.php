@@ -50,7 +50,7 @@ class CommentRepository extends ServiceEntityRepository
             ->andWhere('c.state = :state')
             ->setParameter('conference', $conference)
             ->setParameter('state', 'published')
-            ->orderBy('c.createdAt', 'DESC')
+            ->orderBy('c.createdAt', 'ASC')
             ->setMaxResults(self::COMMENTS_PER_PAGE)
             ->setFirstResult($offset)
             ->getQuery()

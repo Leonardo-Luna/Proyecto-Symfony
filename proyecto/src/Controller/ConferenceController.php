@@ -50,7 +50,10 @@ class ConferenceController extends AbstractController
     {
 
         $comment = new Comment();
+
         $form = $this->createForm(CommentType::class, $comment);
+        $comment->setAuthor($this->getUser()->getUsername());
+        $comment->setAuthorId($this->getUser()->getId());
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {

@@ -2,7 +2,6 @@ Problemas de los que estoy al tanto:
 
 No pude solucionar:
   - Conexión con Mailpit.
-  - Error al publicar un comentario. El envío por mail/slack no reconoce la ruta "review_comment" (existe y funciona). Se guarda en la base de datos correctamente en el estado esperado.
   - No reconoce los siguientes métodos:
     - htmlTemplate() (CommentReviewNotification:29)
     - getAdminRecipients() (CommentMessageHandler:54)
