@@ -49,6 +49,8 @@ class AccountController extends AbstractController
             $dbUser[0]->setPassword($hashedPassword);
             
             $this->entityManager->flush();
+            
+            return $this->redirectToRoute('homepage');
         }
 
         if($form->isSubmitted()) {

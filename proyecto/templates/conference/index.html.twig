@@ -6,11 +6,11 @@
     <div class="container text-centered">
         <div class="row">
             <div class="col">
-                <h3>Give your feedback!</h3>
+                <h3>Give us your feedback!</h3>
             </div>
             {% if has_permission %}
                 <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <a class="btn btn-primary btn-sm" href="#" role="button">Add conference</a>
+                    <a class="btn btn-primary btn-sm" href="{{ path('app_manager_add') }}" role="button">Add conference</a>
                 </div>
             {% endif %}
         </div>

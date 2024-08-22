@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New conference{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('notification') %}
+        <div class="alert alert-info alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <div class="col mb-5">
+        <div class="bg-light shadow border rounded-3 p-4">
+            <h3 class="font-weight-light">Add a conference</h3>
+            {{ form(conference_form) }}
+        </div>
+    </div>
+{% endblock %}
