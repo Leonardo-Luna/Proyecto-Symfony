@@ -16,6 +16,9 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 CREATE DATABASE IF NOT EXISTS `proyecto_test`; 
+
+USE `proyecto_test`;
+
 --
 -- Table structure for table `comment`
 --

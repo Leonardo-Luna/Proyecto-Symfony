@@ -19,16 +19,7 @@ services:
       MYSQL_DATABASE: proyecto
     volumes:
     - ./initdb/proyectoDump.sql:/docker-entrypoint-initdb.d/proyectoDump.sql
-
-  #mysql2:
-  #  image: mysql:9.0.1
-  #  ports:
-  #    - 3307:3307
-  #  environment:
-  #    MYSQL_ROOT_PASSWORD: root
-  #    MYSQL_DATABASE: proyecto_test
-  #  volumes:
-  #  - ./initdb/proyectoDumpTest.sql:/docker-entrypoint-initdb.d/proyectoDumpTest.sql
+    - ./initdb/proyectoDumpTest.sql:/docker-entrypoint-initdb.d/proyectoDumpTest.sql
 
   mailer:
     image: axllent/mailpit
