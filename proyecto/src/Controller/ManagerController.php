@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Conference;
 use App\Form\ConferenceType;
+use App\Repository\ConferenceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,15 @@ class ManagerController extends AbstractController
     }
 
     #[Route('/manager/{slug}', name: 'app_manager_remove')]
-    public function index(): Response
+    public function index(Request $request, ConferenceRepository $conferenceRepository): Response
     {
 
-        
+        $uri = explode('/', $request->getUri());
+        $slug = end($uri);
+        $conference = $conferenceRepository->findBy(['slug' => $slug]);
+
+        $this->entityManager->remove($conference[0]);
+        $this->entityManager->flush();
 
         return $this->redirectToRoute(('homepage'));
     }
