@@ -55,14 +55,11 @@ class Comment
     #[Groups(['comment:list', 'comment:item'])]
     private ?string $photoFilename = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Email]
-    #[Groups(['comment:list', 'comment:item'])]
-    private ?string $email = null;
-
     #[ORM\Column(length: 255, options: ['default' => 'submitted'])]
     private ?string $state = 'submitted';
+
+    #[ORM\Column]
+    private ?int $AuthorId = null;
 
     public function getId(): ?int
     {
@@ -135,18 +132,6 @@ class Comment
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     public function getState(): ?string
     {
         return $this->state;
@@ -158,4 +143,17 @@ class Comment
 
         return $this;
     }
+
+    public function getAuthorId(): ?int
+    {
+        return $this->AuthorId;
+    }
+
+    public function setAuthorId(int $AuthorId): static
+    {
+        $this->AuthorId = $AuthorId;
+
+        return $this;
+    }
+
 }

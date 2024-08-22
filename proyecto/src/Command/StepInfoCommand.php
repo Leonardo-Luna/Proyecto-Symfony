@@ -10,7 +10,7 @@ use Symfony\Component\Process\Process;
 use Symfony\Contracts\Cache\CacheInterface;
 
 #[AsCommand('app:step:info')]
-class StepinfoCommando extends Command
+class StepInfoCommand extends Command
 {
     public function __construct(private CacheInterface $cache)
     {

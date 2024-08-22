@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.username }}'s account{% endblock %}
+
+{% block body %}
+    <h2 class="mb-3">Hello {{ user.username }}, welcome to your profile!</h2>
+
+    <div class="col mb-5">
+        <div class="bg-light shadow border rounded-3 p-4">
+            <h3 class="font-weight-light">Edit your profile</h3>
+            {{ form(edit_user) }}
+        </div>
+    </div>
+{% endblock %}

@@ -29,8 +29,17 @@ class ConferenceController extends AbstractController
     #[Route('/', name: 'homepage')]
     public function index(ConferenceRepository $conferenceRepository): Response
     {
+        
+        if($this->getUser()) {
+            $userIsManager = in_array('ROLE_CONFERENCE_MANAGER',$this->getUser()->getRoles());
+        }
+        else {
+            $userIsManager = false;
+        }
+
         return $this->render('conference/index.html.twig', [
             'conferences' => $conferenceRepository->findAll(),
+            'has_permission' => $userIsManager,
         ]);
     }
 
@@ -48,40 +57,49 @@ class ConferenceController extends AbstractController
                         NotifierInterface $notifier,
                         #[Autowire('%photo_dir%')] string $photoDir): Response
     {
-
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $comment->setConference($conference);
-
-            if($photo = $form['photo']->getData()) {
-                $filename = bin2hex(random_bytes(6).'.'.$photo->guessExtension());
-                $photo->move($photoDir, $filename);
-                $comment->setPhotoFilename($filename);
-            }
         
-            $this->entityManager->persist($comment);
-            $this->entityManager->flush();
+        if($this->getUser()) {
+            $isLogged = true;
 
-            $context = [
-                'user_ip' => $request->getClientIp(),
-                'user_agent' => $request->headers->get('user-agent'),
-                'referrer' => $request->headers->get('referrer'),
-                'permalink' => $request->getUri(),
-            ];
+            $comment->setAuthor($this->getUser()->getUsername());
+            $comment->setAuthorId($this->getUser()->getId());
 
-            $reviewUrl = $this->generateUrl('review_comment', ['id' => $comment->getId()]);
-            $this->bus->dispatch(new CommentMessage($comment->getId(), $reviewUrl, $context));
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()) {
+                $comment->setConference($conference);
 
-            $notifier->send(new Notification('Thank you for the feedback; your comment will be posted after moderation.', ['browser']));
+                if($photo = $form['photo']->getData()) {
+                    $filename = bin2hex(random_bytes(6).'.'.$photo->guessExtension());
+                    $photo->move($photoDir, $filename);
+                    $comment->setPhotoFilename($filename);
+                }
+            
+                $this->entityManager->persist($comment);
+                $this->entityManager->flush();
 
-            return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
+                $context = [
+                    'user_ip' => $request->getClientIp(),
+                    'user_agent' => $request->headers->get('user-agent'),
+                    'referrer' => $request->headers->get('referrer'),
+                    'permalink' => $request->getUri(),
+                ];
+
+                $reviewUrl = $this->generateUrl('review_comment', ['id' => $comment->getId()]);
+                $this->bus->dispatch(new CommentMessage($comment->getId(), $reviewUrl, $context));
+
+                $notifier->send(new Notification('Thank you for the feedback; your comment will be posted after moderation.', ['browser']));
+
+                return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
+            }
+
+            if($form->isSubmitted()) {
+                $notifier->send(new Notification('Please check your submission.', ['browser']));
+            }
         }
-
-        if($form->isSubmitted()) {
-            $notifier->send(new Notification('Please check your submission.', ['browser']));
+        else {
+            $isLogged = false;
         }
 
         $offset = max(0, $request->query->getInt('offset', 0));
@@ -92,6 +110,7 @@ class ConferenceController extends AbstractController
             'comments' => $paginator,
             'previous' => $offset - CommentRepository::COMMENTS_PER_PAGE,
             'next' => min(count($paginator), $offset + CommentRepository::COMMENTS_PER_PAGE),
+            'is_logged' => $isLogged,
             'comment_form' => $form,
         ]);
     }

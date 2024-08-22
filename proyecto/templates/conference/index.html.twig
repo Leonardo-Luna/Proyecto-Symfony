@@ -3,9 +3,18 @@
 {% block title %}Conference Guestbook{% endblock %}
 
 {% block body %}
-    <h2 class="mb-5">
-        Give your feedback!
-    </h2>
+    <div class="container text-centered">
+        <div class="row">
+            <div class="col">
+                <h3>Give us your feedback!</h3>
+            </div>
+            {% if has_permission %}
+                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                    <a class="btn btn-primary btn-sm" href="{{ path('app_manager_add') }}" role="button">Add conference</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
     {% for row in conferences|batch(4) %}
         <div class="row">
@@ -19,10 +28,10 @@
                                 </h4>
                             </div>
 
-                            <a href="{{ path('conference', { slug: conference.slug }) }}"
-                               class="btn btn-sm btn-primary stretched-link">
-                                View
-                            </a>
+                            <a href="{{ path('conference', { slug: conference.slug }) }}" class="btn btn-sm btn-primary">View</a>
+                            {% if has_permission %}
+                                <a class="btn btn-sm btn-danger" href="{{ path('app_manager_remove', { slug: conference.slug }) }}" role="button">Remove</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
