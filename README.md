@@ -9,3 +9,5 @@ To-do:
 ↳ Probablemente nunca suceda. Me da paja pensar.
 
 <a href="https://symfony.com/doc/6.4/the-fast-track/en/index.html">Enlace al libro</a>
+
+Agradecimientos a Gonza por el apoyo moral 🤠.
