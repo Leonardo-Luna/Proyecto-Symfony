@@ -9,6 +9,6 @@ To-do:
 ↳ Probablemente nunca suceda. Me da paja pensar.
 
 <a href="https://symfony.com/doc/6.4/the-fast-track/en/index.html">Enlace al libro</a> <br />
-<u>Nota</u>: EL libro usa PostgreSQL, yo modifiqué todo para usar MySQL.
+<ins>Nota</ins>: EL libro usa PostgreSQL, yo modifiqué todo para usar MySQL.
 
 Agradecimientos a Gonza por el apoyo moral 🤠.
