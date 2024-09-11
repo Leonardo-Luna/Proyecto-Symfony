@@ -8,7 +8,7 @@ To-do:
   - Acomodar el CRUD de admin para que hashee las contraseñas cambiadas. <br/>
 ↳ Probablemente nunca suceda. Me da paja pensar.
 
-<a href="https://symfony.com/doc/6.4/the-fast-track/en/index.html">Enlace al libro</a>
+<a href="https://symfony.com/doc/6.4/the-fast-track/en/index.html">Enlace al libro</a> <br />
 <u>Nota</u>: EL libro usa PostgreSQL, yo modifiqué todo para usar MySQL.
 
 Agradecimientos a Gonza por el apoyo moral 🤠.
